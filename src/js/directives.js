@@ -1,0 +1,5 @@
+define([
+  "application"
+], function(app) {
+
+});

@@ -1,0 +1,78 @@
+.heat-table {
+  border-collapse: separate;
+  border-spacing: 3px;
+  width: 100%;
+  border-bottom: 1px solid #DDD;
+
+  @media @mobile {
+    margin-top: 20px;
+  }
+
+  tr {
+    //border-bottom: 1px solid black;
+  }
+
+  th {
+    font-size: 13px;
+      border-bottom: 1px solid #DDD;
+
+    &.overhead {
+      text-transform: uppercase;
+      border-bottom: none;
+    }
+
+    &.no-border {
+      border-bottom: none;
+    }
+  }
+
+  tbody th {
+    width: 16%;
+  }
+
+  td {
+    width: 19%;
+    border: 3px solid white;
+    text-align: right;
+    padding: 4px;
+    position: relative;
+    cursor: pointer;
+    box-sizing: content-box;
+    transition: box-shadow .2s linear, border .2s linear;
+    box-shadow: 0 0 0px rgba(0, 0, 0, .2);
+    border: 3px solid transparent;
+    box-sizing: content-box;
+
+    &:hover {
+      opacity: .8;
+    }
+
+    nav {
+      display: none;
+    }
+
+    &.selected {
+      box-shadow: 0 0 12px rgba(0, 0, 0, .2);
+      z-index: 99;
+      border: 3px solid black;
+      border: 3px solid rgba(0, 0, 0, .3);
+    }
+
+    tool-tip {
+      display: none;
+      -webkit-columns: 100px;
+      -moz-columns: 100px;
+      -ms-columns: 100px;
+      columns: 100px;
+      overflow: auto;
+
+      .name {
+        display: block;
+      }
+    }
+
+    &:hover tool-tip {
+      display: block;
+    }
+  }
+}

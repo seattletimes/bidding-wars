@@ -1,0 +1,131 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Where the bidding wars are | The Seattle Times</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <%= t.include("src/_adHead.html", grunt.data) %>
+  </head>
+  <body>
+
+    <nav class="top-bar">
+      <a href="http://seattletimes.com">
+        <img class="logo" src="http://seattletimes.com/art/ui/seattletimeslogo_home.svg">
+      </a>
+      <a class="share-button"></a>
+    </nav>
+
+    <%= t.include("src/_adTop.html") %>
+
+    <div class="intro">
+      <h1>Where the bidding wars are</h1>
+
+      <p>
+        The grid below depicts how intense bidding wars were from April to June in King and Snohomish counties based on the share of homes sold that were purchased for more than list price.
+
+      <p>
+        Click any shaded cell in the grid to filter the list of cities in the table below, or click on any city in the table to bring up a list of neighborhoods in that city and their home-sales data. Median means half the places have higher values and half, lower values.
+
+      <p class="credits">
+        <b>DATA</b>: Redfin
+        <b>RESEARCH</b>: Sanjay Bhatt
+        <b>INTERACTIVE</b>: Thomas Wilburn
+
+    </div>
+
+    <%= t.include("src/_adRight.html") %>
+
+    <section class="interactive" ng-cloak>
+
+      <div ng-controller="heatController">
+        <div class="controls">
+          <filter-box
+            model="data.source[data.mode].neighborhoods"
+            select="data.selectBin(value)"
+            placeholder="Search neighborhoods"
+            class="neighborhood-search"
+          ></filter-box>
+          <div class="drilling">
+            <drop-down options="modes" model="data.mode"></drop-down>
+            <div class="crumbs">
+              <bread-crumb model="data.filter" default="cities">City: {{data.filter | strings}}</bread-crumb>
+              <bread-crumb model="data.selected">Clear selection</bread-crumb>
+            </div>
+          </div>
+        </div>
+        <table class="heat-table">
+          <thead>
+            <tr>
+              <td>
+              <th colspan=4 class="overhead">Median sale price
+            <tr>
+              <th> % sold above list price
+              <th>{{ 0 | priceRange:data.mode }}
+              <th>{{ 1 | priceRange:data.mode }}
+              <th>{{ 2 | priceRange:data.mode }}
+              <th>{{ 3 | priceRange:data.mode }}
+          <tbody>
+            <tr ng-repeat="row in data.binned">
+              <th ng-class="{ 'no-border': $last }">{{ "listLabel" + $index | strings }}
+              <td
+                ng-repeat="column in row"
+                ng-style="{ background: '{{column.length | heat}}' };"
+                ng-click="selectBox(column)"
+                class="{{data.selected == column ? 'selected' : ''}}"
+              >
+                {{column.length}}
+                <!--<tool-tip ng-show="{{column.length}}" position="right">
+                  <span class="name" ng-repeat="item in column">
+                    {{item.neighborhood || item.city}}
+                  </span>
+                </tool-tip>-->
+        </table>
+      </div>
+
+      <div ng-controller="tableController">
+        <table class="list-table">
+          <thead>
+            <tr>
+              <th class="location" ng-click="data.sortList('location')" arrow="location">Location
+              <th class="price" ng-click="data.sortList('price')" arrow="price">Median sale price
+              <th class="list" ng-click="data.sortList('aboveList')" arrow="aboveList">% Sold above list
+              <th class="to-list" ng-click="data.sortList('toList')" arrow="toList">Median price difference
+              <th class="dom" ng-click="data.sortList('dom')" arrow="dom">Median days on market
+              <th class="sold" ng-click="data.sortList('sold')" arrow="sold">Units sold
+          <tbody>
+            <tr
+              ng-show="data.selectedCity"
+              class="selected-city"
+            >
+              <td class="location">{{ data.selectedCity.city }}
+              <td class="price">{{ data.selectedCity.price | formatMoney }}
+              <td class="list">{{ data.selectedCity.aboveList | formatPercentage:0 }}
+              <td class="to-list">{{ data.selectedCity.toList | formatPercentage:1 }}
+              <td class="dom">{{ data.selectedCity.dom }}
+              <td class="sold">{{ data.selectedCity.sold }}
+            <tr
+              ng-repeat="row in (data.selected && data.selected.length ? data.selected : data.list)"
+              ng-class="{ selected: row == data.selectedHood }"
+            >
+              <td class="location"
+                ng-click="pick(row)"
+                ng-class="{ linked: !row.neighborhood && row.hoods }"
+              >
+                {{row.neighborhood || row.city}}
+              <td class="price">{{row.price | formatMoney}}
+              <td class="list">{{row.aboveList | formatPercentage:0}}
+              <td class="to-list">{{row.toList | formatPercentage:1}}
+              <td class="dom">{{row.dom}}
+              <td class="sold">{{row.sold}}
+        </table>
+      </div>
+
+    </section>
+
+    <br class="clearing">
+
+    <script src="app.js"></script>
+    <%= t.include("src/_adFoot.html") %>
+  </body>
+</html>

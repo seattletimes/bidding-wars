@@ -1,0 +1,92 @@
+[ng-controller="tableController"] {
+  padding-top: 10px;
+  margin-top: 10px;
+  //border-top: 1px dashed #888;
+}
+
+.list-table {
+  border-collapse: collapse;
+  font-size: 14px;
+
+  @media @mobile {
+    font-size: 16px;
+  }
+
+  .sorted {
+    &::after {
+      content: "\25B2";
+    }
+
+    &.down::after {
+      content: "\25BC"
+    }
+  }
+
+  tr {
+    &.selected {
+      background: rgb(240, 80, 30);
+    }
+
+    &:nth-child(2n):not(.selected) {
+      background: #F8F8F8;
+    }
+
+    &.selected-city {
+      font-weight: bold;
+      background: #EEE;
+      border-bottom: 1px solid black;
+    }
+  }
+
+  th {
+    padding: 4px 8px;
+    background: white;
+    text-align: right;
+    padding-bottom: 1em;
+    position: relative;
+    vertical-align: bottom;
+    color: #444;
+    cursor: pointer;
+  }
+
+  td {
+    padding: 4px;
+    text-align: right;
+
+    &.location.linked {
+      cursor: pointer;
+      text-decoration: underline;
+    }
+  }
+
+  .location {
+    text-align: left;
+  }
+
+  .price {
+    // width: 100px;
+  }
+
+  .list {
+    // width: 100px;
+  }
+
+  .to-list {
+    // width: 100px;
+    @media @mobile {
+      display: none;
+    }
+  }
+
+  .dom {
+    // width: 100px;
+  }
+
+  .sold {
+    // width: 100px;
+
+    @media @mobile {
+      display: none;
+    }
+  }
+}

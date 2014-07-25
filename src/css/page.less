@@ -1,0 +1,124 @@
+body {
+  max-width: 1080px;
+  margin: auto;
+  font-family: arial, sans-serif;
+  padding: 0 8px 40px;
+}
+
+[ng-cloak] {
+  opacity: 0;
+}
+
+h1 {
+  font-family: georgia, sans-serif;
+  text-align: center;
+}
+
+nav.top-bar {
+  padding: 8px 0;
+  border-bottom: 1px solid #AAA;
+  position: relative;
+
+  .logo {
+    height: 20px;
+  }
+
+  .share-button {
+    float: right;
+  }
+
+}
+
+.credits {
+  font-size: 12px;
+  clear: both;
+
+  b {
+    margin-left: 20px;
+  }
+}
+
+.interactive {
+  max-width: 720px;
+  float: left;
+  opacity: 1;
+  transition: opacity .5s linear;
+  border-right: 1px solid #DDD;
+  padding-right: 20px;
+
+  @media (max-width: 960px) {
+    margin: auto;
+    float: none;
+    border-right: none;
+    padding-right: 0;
+  }
+
+}
+
+.clearing {
+  clear: both;
+}
+
+.controls {
+
+  .drilling {
+
+    drop-down {
+      @media @mobile {
+        margin: auto;
+        width: 100%;
+      }
+    }
+
+    @media @mobile {
+      text-align: center;
+      margin-top: 8px;
+    }
+
+    bread-crumb {
+      @media @mobile {
+        margin-top: 8px;
+      }
+    }
+  }
+
+  .neighborhood-search {
+    float: right;
+    width: 150px;
+
+    @media @mobile {
+      float: none;
+      width: 100%;
+    }
+  }
+}
+
+#adtopright {
+  margin: 8px auto;
+  text-align: center;
+
+  & > div, & > img {
+    display: inline-block;
+  }
+
+  @media (max-width: 800px) {
+    display: none;
+  }
+}
+
+#adright {
+  float: right;
+
+  .ui {
+    margin: auto;
+    display: block;
+  }
+
+  & > img, & > div, & > a {
+    display: block;
+  }
+
+  @media (max-width: 960px) {
+    display: none;
+  }
+}

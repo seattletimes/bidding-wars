@@ -1,0 +1,10 @@
+<input ng-model="search" placeholder="{{placeholder}}">
+<ul ng-show="results.length" class="results">
+  <li
+    ng-repeat="item in results"
+    ng-click="selectItem(item)"
+    ng-class="{ selected: $index == selectedIndex }"
+  >
+    {{item.neighborhood}}, {{item.city}}
+  </li>
+</ul>

@@ -1,0 +1,16 @@
+{
+  "s3": {
+    "stage": {
+      "bucket": "apps-stage.seattletimesdata.com",
+      "path": "cosmic-temperance"
+    },
+    "live": {
+      "bucket": "projects.seattletimes.com",
+      "path": "2014/bidding-wars"
+    }
+  },
+  "title": "Where the bidding wars are",
+  "description": "Interactive feature showing the location of intense home bidding",
+  "url": "http://projects.seattletimes.com/2014/bidding-wars",
+  "slug": "bidding-wars"
+}
