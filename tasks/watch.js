@@ -26,7 +26,7 @@ module.exports = function(grunt) {
         tasks: ["template"]
       },
       js: {
-        files: ["src/js/**/*.js", "src/js/**/*.html"],
+        files: ["src/js/**/*.js", "src/js/**/*.js"],
         tasks: ["amd"]
       }
     }

@@ -6,10 +6,10 @@
     <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
     <link rel="stylesheet" id="belodin-css" href="http://stmediakit.wpengine.netdna-cdn.com/wp-content/themes/stmediakit-child/webfonts.css?ver=3.9.1" type="text/css">
     <link rel="stylesheet" type="text/css" href="style.css">
-    <%= t.include("src/_adHead.html", grunt.data) %>
+    <%= t.include("_adHead.html", grunt.data) %>
   </head>
   <body>
-      <%= t.include("src/_adTop.html") %>
+      <%= t.include("_adTop.html") %>
 
     <nav class="top-bar">
       <a class="logo" href="http://seattletimes.com">
@@ -35,7 +35,7 @@
 
     </div>
 
-    <%= t.include("src/_adRight.html") %>
+    <%= t.include("_adRight.html") %>
 
     <section class="interactive" ng-cloak>
 
@@ -132,6 +132,6 @@
     <br class="clearing">
 
     <script src="app.js"></script>
-    <%= t.include("src/_adFoot.html") %>
+    <%= t.include("_adFoot.html") %>
   </body>
 </html>
