@@ -4,33 +4,34 @@
     <title>Where the bidding wars are | The Seattle Times</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
+    <link rel="stylesheet" id="belodin-css" href="http://stmediakit.wpengine.netdna-cdn.com/wp-content/themes/stmediakit-child/webfonts.css?ver=3.9.1" type="text/css">
     <link rel="stylesheet" type="text/css" href="style.css">
     <%= t.include("src/_adHead.html", grunt.data) %>
   </head>
   <body>
+      <%= t.include("src/_adTop.html") %>
 
     <nav class="top-bar">
-      <a href="http://seattletimes.com">
-        <img class="logo" src="http://seattletimes.com/art/ui/seattletimeslogo_home.svg">
+      <a class="logo" href="http://seattletimes.com">
+        <img src="http://seattletimes.com/art/ui/seattletimeslogo_home.svg">
       </a>
-      <a class="share-button"></a>
     </nav>
 
-    <%= t.include("src/_adTop.html") %>
 
     <div class="intro">
+      <a class="share-button"></a>
+
       <h1>Where the bidding wars are</h1>
+
+      <p class="credits">
+        <b>RESEARCH</b>: Sanjay Bhatt
+        <b>INTERACTIVE</b>: Thomas Wilburn
 
       <p>
         The grid below depicts how intense bidding wars were from April to June in King and Snohomish counties based on the share of homes sold that were purchased for more than list price.
 
       <p>
         Click any shaded cell in the grid to filter the list of cities in the table below, or click on any city in the table to bring up a list of neighborhoods in that city and their home-sales data. Median means half the places have higher values and half, lower values.
-
-      <p class="credits">
-        <b>DATA</b>: Redfin
-        <b>RESEARCH</b>: Sanjay Bhatt
-        <b>INTERACTIVE</b>: Thomas Wilburn
 
     </div>
 
@@ -48,10 +49,6 @@
           ></filter-box>
           <div class="drilling">
             <drop-down options="modes" model="data.mode"></drop-down>
-            <div class="crumbs">
-              <bread-crumb model="data.filter" default="cities">City: {{data.filter | strings}}</bread-crumb>
-              <bread-crumb model="data.selected">Clear selection</bread-crumb>
-            </div>
           </div>
         </div>
         <table class="heat-table">
@@ -81,6 +78,12 @@
                   </span>
                 </tool-tip>-->
         </table>
+        <div class="controls">
+            <div class="crumbs">
+              <bread-crumb model="data.filter" default="cities">City: {{data.filter | strings}}</bread-crumb>
+              <bread-crumb model="data.selected">Clear selection</bread-crumb>
+            </div>
+        </div>
       </div>
 
       <div ng-controller="tableController">
@@ -89,7 +92,7 @@
             <tr>
               <th class="location" ng-click="data.sortList('location')" arrow="location">Location
               <th class="price" ng-click="data.sortList('price')" arrow="price">Median sale price
-              <th class="list" ng-click="data.sortList('aboveList')" arrow="aboveList">% Sold above list
+              <th class="list" ng-click="data.sortList('aboveList')" arrow="aboveList">% sold above list
               <th class="to-list" ng-click="data.sortList('toList')" arrow="toList">Median price difference
               <th class="dom" ng-click="data.sortList('dom')" arrow="dom">Median days on market
               <th class="sold" ng-click="data.sortList('sold')" arrow="sold">Units sold
@@ -120,6 +123,9 @@
               <td class="sold">{{row.sold}}
         </table>
       </div>
+
+      <p class="data-credit">
+        <b>DATA</b>: Redfin
 
     </section>
 

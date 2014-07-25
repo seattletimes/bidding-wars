@@ -13,7 +13,7 @@ require([
 
   new Share(".share-button", {
     ui: {
-      flyout: "bottom left"
+      flyout: "top left"
     }
   });
 
