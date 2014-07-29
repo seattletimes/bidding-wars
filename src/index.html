@@ -48,7 +48,11 @@
             class="neighborhood-search"
           ></filter-box>
           <div class="drilling">
-            <drop-down options="modes" model="data.mode"></drop-down>
+            <!--<drop-down options="modes" model="data.mode"></drop-down>-->
+            <select ng-model="data.mode">
+              <option value="sf">Single-family homes</option>
+              <option value="condo">Condos</option>
+            </select>
           </div>
         </div>
         <table class="heat-table">

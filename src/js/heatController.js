@@ -6,19 +6,6 @@ define([
 
     $scope.data = data;
 
-    data.ready.then(function() {
-      $scope.filters = data.filterCities.map(function(c) {
-        return {
-          label: c,
-          data: c
-        }
-      });
-      $scope.filters.unshift({
-        label: "All Cities",
-        data: "cities"
-      });
-    });
-
     $scope.modes = [
       { label: "Single-family", data: "sf" },
       { label: "Condos", data: "condo" }

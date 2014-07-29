@@ -4,8 +4,6 @@ require([
   "filters",
   "heatController",
   "tableController",
-  "dropdown",
-  "tooltip",
   "filterbox",
   "breadcrumb",
   "arrow"

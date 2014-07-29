@@ -226,11 +226,6 @@ define([
         facade.list = filtered;
         binData(filtered);
       });
-      var cities = {};
-      var all = source.sf.neighborhoods
-        .map(function(h) { return h.city })
-        .forEach(function(h) { cities[h] = true; });
-      facade.filterCities = Object.keys(cities);
 
       ready.resolve();
 
