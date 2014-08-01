@@ -65,7 +65,9 @@ define([
           }
           scope.$apply();
           setTimeout(function() {
-            var top = ul.querySelector(".selected").offsetTop
+            var selected = ul.querySelector(".selected")
+            if (!selected) return;
+            var top = selected.offsetTop
             if (top < ul.scrollTop || top >= ul.scrollTop + ul.offsetHeight) {
               ul.scrollTop = top;
             }

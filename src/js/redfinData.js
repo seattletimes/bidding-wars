@@ -5,7 +5,10 @@ define([
   app.service("redfinData", ["$http", "$q", function($http, q) {
 
     var cities = [];
-    var cityMap = {};
+    var cityMap = {
+      sf: {},
+      condo: {}
+    };
     var neighborhoods = [];
     var source = {
       sf: {
@@ -133,6 +136,9 @@ define([
       },
       set mode(value) {
         mode = value;
+        if (facade.selectedCity) {
+          facade.selectedCity = cityMap[value][facade.filter];
+        }
         var data = getFiltered();
         this.selected = null;
         this.list = data;
@@ -143,7 +149,7 @@ define([
       },
       set filter(value) {
         filter = value;
-        facade.selectedCity = cityMap[value];
+        facade.selectedCity = cityMap[mode][value];
         facade.sortKey = value == "cities" ? "city" : "neighborhood";
         var data = getFiltered();
         this.selected = null;
@@ -208,7 +214,7 @@ define([
       ["sf", "condo"].forEach(function(key) {
         source[key].cities = data[key].filter(function(item) {
           if (!item.neighborhood) {
-            cityMap[item.city] = item;
+            cityMap[key][item.city] = item;
             return true;
           }
           return false;
@@ -216,7 +222,7 @@ define([
 
         source[key].neighborhoods = data[key].filter(function(item) {
           if (item.neighborhood) {
-            if (item.city in cityMap) cityMap[item.city].hoods = true;
+            if (item.city in cityMap[key]) cityMap[key][item.city].hoods = true;
             return true;
           }
           return false;
