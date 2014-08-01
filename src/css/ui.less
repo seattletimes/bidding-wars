@@ -74,16 +74,19 @@ drop-down {
 
 tool-tip {
   position: absolute;
-  top: ~"calc(100% + 20px)";
+  top: ~"calc(100% + 15px)";
   left: 0;
   background: white;
-  z-index: 999;
+  z-index: 9999;
   max-width: 300px;
   max-height: 300px;
   font-size: 13px;
   text-align: left;
   padding: 4px;
   box-shadow: 4px 4px 4px rgba(0, 0, 0, .2);
+  border-width: 0 1px 1px 1px;
+  border-color: #EEE;
+  border-style: solid;
 
   &::before {
     content: "";

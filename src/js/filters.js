@@ -16,12 +16,13 @@ define([
   }]);
 
   app.filter("formatPercentage", function() {
-    return function(value, precision) {
+    return function(value, precision, first) {
       if (typeof precision == "undefined") {
         precision = 1;
       }
       var rounded = (value * 100).toFixed(precision);
-      return rounded + "%";
+      if (typeof first == "undefined" || first) rounded += "%";
+      return rounded;
     }
   });
 
@@ -33,9 +34,18 @@ define([
     return s;
   }
 
-  app.filter("formatMoney", function() {
+  app.filter("formatNumber", function() {
     return function(value) {
-      return "$" + commafy(value);
+      return commafy(value);
+    }
+  });
+
+  app.filter("formatMoney", function() {
+    return function(value, first) {
+      if (typeof first == "undefined" || first) {
+        return "$" + commafy(value);
+      }
+      return commafy(value);
     }
   });
 
@@ -43,8 +53,8 @@ define([
     return function(index, mode) {
       if (!mode) return "";
       var labels = {
-        sf: ["<$350k", "350k - 500k", "500k - 750k", ">750k"],
-        condo: ["<$175k", "175k - 300k", "300k - 425k", ">425k"]
+        sf: ["Less than $350,000", "$350,000 - $500,000", "$500,000 - $750,000", "More than $750,000"],
+        condo: ["Less than $175,000", "$175,000 - $300,000", "$300,000 - $425,000", "More than $425,000"]
       };
       return labels[mode][index];
     };
@@ -75,6 +85,15 @@ define([
       }
       return value;
     }
-  })
+  });
+
+  app.filter("location", function() {
+    return function(value, mode) {
+      if (mode == "cities") {
+        return value > 1 ? "cities" : "city";
+      }
+      return value > 1 ? "neighborhoods" : "neighborhood";
+    }
+  });
 
 });

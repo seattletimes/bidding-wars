@@ -6,7 +6,8 @@ require([
   "tableController",
   "filterbox",
   "breadcrumb",
-  "arrow"
+  "arrow",
+  "tooltip"
 ], function(app, Share) {
 
   new Share(".share-button", {

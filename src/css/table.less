@@ -3,11 +3,15 @@
   margin-top: 10px;
   //border-top: 1px dashed #888;
   border-bottom: 1px dashed #BBB;
+
+  .disclaimer {
+    font-size: 14px;
+  }
 }
 
 .list-table {
-  border-collapse: collapse;
   font-size: 14px;
+  max-width: 100%;
 
   @media @mobile {
     font-size: 16px;
@@ -48,6 +52,17 @@
     vertical-align: bottom;
     color: #444;
     cursor: pointer;
+    //font-weight: normal;
+    font-size: 15px;
+    border-right: 1px solid #EEE;
+
+    &:last-child {
+      border-right: none;
+    }
+
+    @media @mobile {
+      font-size: 14px;
+    }
   }
 
   td {
@@ -79,6 +94,11 @@
   .location {
     text-align: left;
     min-width: 150px;
+
+    @media @mobile {
+      max-width: 25%;
+      min-width: 0px;
+    }
   }
 
   .price {
@@ -86,11 +106,11 @@
   }
 
   .list {
-    // width: 100px;
+    min-width: 100px;
   }
 
   .to-list {
-    // width: 100px;
+    max-width: 100px;
     @media @mobile {
       display: none;
     }
@@ -98,6 +118,9 @@
 
   .dom {
     // width: 100px;
+    @media @mobile {
+      display: none;
+    }
   }
 
   .sold {

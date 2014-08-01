@@ -33,7 +33,7 @@
   td {
     width: 19%;
     border: 3px solid white;
-    text-align: right;
+    text-align: center;
     padding: 4px;
     position: relative;
     cursor: pointer;
@@ -44,7 +44,6 @@
     box-sizing: content-box;
 
     &:hover {
-      opacity: .8;
     }
 
     nav {
@@ -60,19 +59,16 @@
 
     tool-tip {
       display: none;
-      -webkit-columns: 100px;
-      -moz-columns: 100px;
-      -ms-columns: 100px;
-      columns: 100px;
-      overflow: auto;
+      right: 0;
+      text-align: center;
 
-      .name {
-        display: block;
+      &::before {
+        left: 40%;
       }
     }
 
     &:hover tool-tip {
-      display: block;
+      display: inherit;
     }
   }
 }

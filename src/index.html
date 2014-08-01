@@ -27,11 +27,13 @@
         <b>RESEARCH</b>: Sanjay Bhatt
         <b>INTERACTIVE</b>: Thomas Wilburn
 
-      <p>
-        The grid below depicts how intense bidding wars were from April to June in King and Snohomish counties based on the share of homes sold that were purchased for more than list price.
+      <p class="chatter">
+        The grid below shows how bidding wars vary in intensity by city and neighborhood, based on the percentage of homes sold above list price. The data covers sales from April through June in King and Snohomish counties. <a href="http://seattletimes.com/html/businesstechnology/2024217232_biddingwarsxml.html">Read story &rsaquo;</a>
 
-      <p>
-        Click any shaded cell in the grid to filter the list of cities in the table below, or click on any city in the table to bring up a list of neighborhoods in that city and their home-sales data. Median means half the places have higher values and half, lower values.
+      <p class="chatter">
+        <b>To explore the data for a city or neighborhood you’re interested in:</b>
+        Click any shaded cell in the grid to get a list of cities fitting the price and bidding-war intensity indicated; or, click on any city in the table below to get a list of neighborhoods in that city and their bidding-war data. You can also type the neighborhood name in the search box to find it in the grid.
+
 
     </div>
 
@@ -76,11 +78,9 @@
                 class="{{data.selected == column ? 'selected' : ''}}"
               >
                 {{column.length}}
-                <!--<tool-tip ng-show="{{column.length}}" position="right">
-                  <span class="name" ng-repeat="item in column">
-                    {{item.neighborhood || item.city}}
-                  </span>
-                </tool-tip>-->
+                <tool-tip ng-show="{{column.length}}" position="right">
+                  {{column.length}} {{column.length | location:data.filter}}
+                </tool-tip>
         </table>
         <div class="controls">
             <div class="crumbs">
@@ -94,23 +94,23 @@
         <table class="list-table">
           <thead>
             <tr>
-              <th class="location" ng-click="data.sortList('location')" arrow="location">Location
-              <th class="price" ng-click="data.sortList('price')" arrow="price">Median sale price
-              <th class="list" ng-click="data.sortList('aboveList')" arrow="aboveList">% sold above list
-              <th class="to-list" ng-click="data.sortList('toList')" arrow="toList">Median price difference
-              <th class="dom" ng-click="data.sortList('dom')" arrow="dom">Median days on market
+              <th class="location" ng-click="data.sortList('location')" arrow="location">City / neighborhood
               <th class="sold" ng-click="data.sortList('sold')" arrow="sold">Units sold
+              <th class="list" ng-click="data.sortList('aboveList')" arrow="aboveList">% sold<br>above list
+              <th class="price" ng-click="data.sortList('price')" arrow="price">Sale price*
+              <th class="to-list" ng-click="data.sortList('toList')" arrow="toList">Over/under list price*
+              <th class="dom" ng-click="data.sortList('dom')" arrow="dom">Days on market*
           <tbody>
             <tr
               ng-show="data.selectedCity"
               class="selected-city"
             >
               <td class="location">{{ data.selectedCity.city }}
-              <td class="price">{{ data.selectedCity.price | formatMoney }}
+              <td class="sold">{{ data.selectedCity.sold }}
               <td class="list">{{ data.selectedCity.aboveList | formatPercentage:0 }}
+              <td class="price">{{ data.selectedCity.price | formatMoney }}
               <td class="to-list">{{ data.selectedCity.toList | formatPercentage:1 }}
               <td class="dom">{{ data.selectedCity.dom }}
-              <td class="sold">{{ data.selectedCity.sold }}
             <tr
               ng-repeat="row in (data.selected && data.selected.length ? data.selected : data.list)"
               ng-class="{ selected: row == data.selectedHood }"
@@ -120,16 +120,19 @@
                 ng-class="{ linked: !row.neighborhood && row.hoods }"
               >
                 {{row.neighborhood || row.city}}
-              <td class="price">{{row.price | formatMoney}}
-              <td class="list">{{row.aboveList | formatPercentage:0}}
-              <td class="to-list">{{row.toList | formatPercentage:1}}
-              <td class="dom">{{row.dom}}
               <td class="sold">{{row.sold}}
+              <td class="list">{{row.aboveList | formatPercentage:0:$first}}
+              <td class="price">{{row.price | formatMoney:$first}}
+              <td class="to-list">{{row.toList | formatPercentage:1:$first}}
+              <td class="dom">{{row.dom}}
         </table>
       </div>
 
+      <p class="disclaimer">
+        Columns marked with * are medians: half the homes sold were above this value, half below. To see the neighborhood boundaries, go to <a href="http://redfin.com">Redfin.com</a>.
+
       <p class="data-credit">
-        <b>DATA</b>: Redfin
+        <b>DATA</b>: <a href="http://redfin.com">Redfin</a>
 
     </section>
 
